@@ -16,8 +16,11 @@ const port = process.env.PORT || 5001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-mongoose.connect('mongodb://shaked:163452zz@ds149606.mlab.com:49606/usermanager', { useNewUrlParser: true }).then(() => {
+console.log('lala2');
+mongoose.connect('mongodb://shaked2:163452zz@ds149606.mlab.com:49606/usermanager', { useNewUrlParser: true }).then(() => {
   console.log('moongose connected correctly.');
+}).catch(() => {
+  console.log('lalal');
 });
 
 const db = mongoose.connection;
@@ -62,6 +65,7 @@ app.get('/api/deleteTask', (req, res) => {
 });
 
 app.get('/api/getTasks', (req, res) => {
+  console.log('getting tasks');
   let tasks = [];
   Task.find({}, (err, myTasks) => {
     tasks = myTasks.map(task => task);
